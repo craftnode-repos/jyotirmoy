@@ -8,9 +8,11 @@
   --cn-dark-900: #0f172a;
   --cn-blue-main: #0e72ca;
   --cn-blue-opacity: #1482e2a6;
+  --cn-blue-opacity-2: #1482e233;
   --cn-blue-light: #82c4fd;
   --cn-pink-main: #ff2e62;
   --cn-gray-300: #d1d5db;
+  --cn-gray-100: #333;
   --cn-font-main: "Inter", sans-serif;
   --cn-font-heading: "Open Sans", sans-serif;
   --cn-radius: 16px;
@@ -23,6 +25,7 @@ body {
   font-size: 1rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--cn-dark-solid);
   color: var(--cn-gray-300);
   line-height: 1.4;
 }
@@ -140,8 +143,7 @@ img {
   border: none;
   color: white;
   padding: 1rem 2rem;
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 1rem;
   border-radius: var(--cn-radius);
   cursor: pointer;
   margin-top: 2rem;
@@ -149,19 +151,24 @@ img {
   overflow: hidden;
   transition: all 0.3s ease;
   animation: pulse 2s infinite;
+  display: inline-flex;
 }
 .animated-btn:hover {
-  transform: scale(1.05);
   box-shadow: 0 0 20px var(--cn-blue-opacity);
 }
 .animated-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   transition: left 0.5s;
 }
 .animated-btn:hover::before {
@@ -425,13 +432,17 @@ section p strong {
 }
 .companyHeading > span {
   margin-left: auto;
-  margin-top: 8px;
+  margin-top: 10px;
   font-size: 0.875rem;
 }
 .companyHeading h3 {
   display: flex;
   gap: 10px;
-  align-items: center;
+  align-items: flex-start;
+  flex: 1;
+}
+.companyHeading h3 > span {
+  margin-top: 6px;
 }
 .companyHeading h3 em {
   color: var(--cn-pink-main);
@@ -460,10 +471,183 @@ h4 {
   font-size: 0.875rem;
   padding-left: 20px;
 }
+.companyList {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+.educationList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.educationList li {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-left: 2.5rem;
+}
+.educationList li svg {
+  position: absolute;
+  width: 1.5rem;
+  color: var(--cn-blue-main);
+  left: 0;
+  top: 0;
+}
+.educationList li h3 {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 0.25rem;
+}
+.educationList li h3 span {
+  color: var(--cn-pink-main);
+  font-weight: 600;
+}
+.educationList li em {
+  font-size: 0.875rem;
+  color: var(--cn-blue-light);
+  font-style: normal;
+}
+.skillList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.skillList > li {
+  box-shadow: 0 0 80px var(--cn-blue-opacity-2);
+  border-radius: var(--cn-radius);
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+}
+.skillList .skillImg {
+  width: 25%;
+  flex: 0 0 25%;
+  border-radius: var(--cn-radius);
+  overflow: hidden;
+}
+.skillList .skillImg img {
+  display: block;
+  width: 100%;
+}
+.skillContent {
+  flex: 1;
+}
+.skillContent h3 {
+  color: var(--cn-blue-main);
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+.skillContent ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.skillContent ul li {
+  background-color: var(--cn-dark-900);
+  padding: 0.5rem 1rem;
+  border-radius: var(--cn-radius);
+  font-size: 0.875rem;
+  border-bottom: 2px solid var(--cn-gray-100);
+}
 /* Responsive Design */
 @media (max-width: 991px) {
+  h1 {
+    font-size: 3rem;
+  }
+  section {
+    padding: 3rem 1rem;
+  }
   .animated-btn {
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
+  }
+  .skillList .skillImg {
+    width: 35%;
+    flex: 0 0 35%;
+  }
+  .serviceContent {
+    padding: 1rem;
+  }
+}
+@media (max-width: 767px) {
+  h1 {
+    font-size: 2rem;
+  }
+  section {
+    padding: 2.5rem 0;
+  }
+  .heroLabel {
+    font-size: 1rem;
+  }
+  .connections {
+    gap: 1rem;
+  }
+  .sectionHeader {
+    margin-bottom: 2rem;
+  }
+  .sectionHeader h2 {
+    display: block;
+    position: relative;
+    padding-bottom: 0.5rem;
+    font-size: 1.5rem;
+  }
+  .sectionHeader h2 span {
+    margin: 0;
+  }
+  .sectionHeader h2::before,
+  .sectionHeader h2::after {
+    position: absolute;
+    bottom: 0;
+    width: 50%;
+    height: 1px;
+    margin: 0 5px;
+  }
+  .sectionHeader h2::before {
+    right: 50%;
+  }
+  .sectionHeader h2::after {
+    left: 50%;
+  }
+  .companyHeading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  .companyHeading > span {
+    margin: 0 0 0 46px;
+  }
+  .serviceCard,
+  .serviceCard:nth-child(2n + 2) {
+    flex-direction: column;
+  }
+  .serviceImg {
+    flex: 1;
+    max-width: 300px;
+  }
+  .serviceContent,
+  .serviceCard:nth-child(2n + 2) .serviceContent {
+    left: auto;
+    top: -20px;
+    padding: 2rem 1rem;
+  }
+  .skillList > li {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.5rem 1rem;
+  }
+  .skillList .skillImg {
+    width: 100%;
+    flex: 0 0 100%;
+    max-width: 240px;
+  }
+  .skillContent ul {
+    justify-content: center;
+  }
+  .serviceCard h3 {
+    font-size: 1.25rem;
   }
 }
